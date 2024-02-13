@@ -131,7 +131,7 @@ ros2 service list
 
 This should be the output
 
-![Service list](./assets/kiss_icp/Screenshot%20from%202024-02-09%2009-35-54.png)
+![Service list](./Screenshot%20from%202024-02-09%2009-35-54.png)
 
 Kiss-icp node does not have any ros2 actions.
 
