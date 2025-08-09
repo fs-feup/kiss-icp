@@ -205,7 +205,7 @@ inline std::vector<Eigen::Vector3d> PointCloud2ToEigen(const PointCloud2::ConstS
     sensor_msgs::PointCloud2ConstIterator<float> msg_y(*msg, "y");
     sensor_msgs::PointCloud2ConstIterator<float> msg_z(*msg, "z");
     for (size_t i = 0; i < msg->height * msg->width; ++i, ++msg_x, ++msg_y, ++msg_z) {
-        points.emplace_back(*msg_x, *msg_y, *msg_z);
+        points.emplace_back(-(*msg_y), (*msg_x), *msg_z);
     }
     return points;
 }

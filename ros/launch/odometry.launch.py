@@ -38,11 +38,13 @@ def generate_launch_description():
     return LaunchDescription(
         [
             # ROS 2 parameters
-            DeclareLaunchArgument("topic", description="sensor_msg/PointCloud2 topic to process"),
+            DeclareLaunchArgument(
+                "topic", description="sensor_msg/PointCloud2 topic to process"
+            ),
             DeclareLaunchArgument("bagfile", default_value=""),
             DeclareLaunchArgument("visualize", default_value="true"),
-            DeclareLaunchArgument("odom_frame", default_value="odom"),
-            DeclareLaunchArgument("base_frame", default_value=""),
+            DeclareLaunchArgument("odom_frame", default_value="map"),
+            DeclareLaunchArgument("base_frame", default_value="kiss_odom"),
             DeclareLaunchArgument("publish_odom_tf", default_value="true"),
             # KISS-ICP parameters
             DeclareLaunchArgument("deskew", default_value="false"),
@@ -76,7 +78,10 @@ def generate_launch_description():
                 package="rviz2",
                 executable="rviz2",
                 output={"both": "log"},
-                arguments=["-d", PathJoinSubstitution([current_pkg, "rviz", "kiss_icp_ros2.rviz"])],
+                arguments=[
+                    "-d",
+                    PathJoinSubstitution([current_pkg, "rviz", "kiss_icp_ros2.rviz"]),
+                ],
                 condition=IfCondition(LaunchConfiguration("visualize")),
             ),
             ExecuteProcess(
